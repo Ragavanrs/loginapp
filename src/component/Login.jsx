@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Modal } from "antd";
 import './Login.css'
-import userData from '../json/LoginCredentials.json'
+//import userData from '../json/LoginCredentials.json'
 import Registration from "./Registration";
 export default function Login(){
 
@@ -24,9 +24,18 @@ export default function Login(){
     SetShowRegistration(!showRegistration);
   }
 
-  useEffect(()=>{
-    setUsers(userData);
-  },[]);
+  useEffect(() => {
+    fetch('http://localhost:2000/getusers')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        return response.json();
+      })
+      .then(data => setUsers(data))
+      .catch(error => console.error('Error fetching data:', error.message));
+  }, []);
+  
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -53,7 +62,7 @@ export default function Login(){
         <div style={{ backgroundColor: 'red', color: 'white', padding: '10px', marginBottom: '10px' }}>
           Invalid username or password
         </div>
-      )};
+      )}
         {showRegistration?
         <Registration OnSubmission={toggleToRegistration} />:(
 

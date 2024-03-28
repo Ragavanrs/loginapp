@@ -23,11 +23,19 @@ body {
     width: auto;
     margin: 0 auto; 
     display: block;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff; 
-    color: #fff;
     cursor: pointer;
+    background: linear-gradient(101deg, #fe9c37, #da6026, #114155, #3b97b6, #693237);
+    border: none;
+    border-radius: 50rem;
+    padding-left: 35px;
+    padding-right: 35px;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+  }
+  .login-form-button :hover{
+    box-shadow: none;
   }
   
   .title {
